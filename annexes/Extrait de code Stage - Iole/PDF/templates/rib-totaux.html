@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/pdf.css">
+</head>
+
+<body>
+    <style>
+        /* .items {
+            width: 40%;
+        } */
+
+        /* .totaux {
+            width: 38%;
+        }
+
+        .rib {
+            width: 60%;
+             display: flex; 
+        } 
+
+        .flex {
+             display: flex;
+        }*/
+    </style>
+    <div class="flex mb-50 invoiceFooter">
+        <!-- Informations RIB -->
+        <div id="rib" class="rib">
+            <p>
+                <span class="bold">Conditions et modalités de règlement : </span>
+            </p>
+            <p>
+                <span class="bold">Règlement par virement :</span><br />
+                IBAN FR76 4590 4857 0301 9867 045 (Ajouter Libellé : FAC2020-IOLE)
+            </p>
+            <p>
+                <span class="bold">Règlement par chèque à l’odre de :</span><br />
+                Iole Solutions
+            </p>
+
+            <p>Paiement sous 30 jours à réception de la facture. Pas d’escompte pour paiement anticipé. En cas de retard
+                de paiement, application d’une indemnité forfaitaire pour frais de recouvrement de 40€, selon l’article
+                D.441-5 du code du commerce.</p>
+        </div>
+
+        <!-- Tableau Totaux -->
+        <div class="totaux">
+            <div class="items"> <br /><br />
+                <table class="tableau mb-12">
+                    <thead>
+                        <tr>
+                        <tr id="totalHT">
+                            <th> Total HT
+                            </th>
+                            <th></th>
+                            <th>0,00 €
+                            </th>
+                        </tr>
+                        <td class="bold center"> Taux TVA </td>
+                        <td class="bold center"> Base </td>
+                        <td class="bold center"> Total TVA </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="center"> TVA 20 % </td>
+                            <td class="center">1 004,00 € </td>
+                            <td class="center"> 200,80 € </td>
+                        </tr>
+                        <tr>
+                            <td class="center"> TVA 10 % </td>
+                            <td class="center">83,30 € </td>
+                            <td class="center"> 8,33 € </td>
+                        </tr>
+                        <tr>
+                            <td class="center"> TVA 5.5 % </td>
+                            <td class="center">127,46 € </td>
+                            <td class="center"> 7,01 € </td>
+                        </tr>
+                        <tr class="semibold bold" id="totalTVA">
+                            <td class="grey center"> Total TVA </td>
+                            <td class="grey center"></td>
+                            <td class="grey center">216,14 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="bold">Total TTC <span class="right">216,14 €</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

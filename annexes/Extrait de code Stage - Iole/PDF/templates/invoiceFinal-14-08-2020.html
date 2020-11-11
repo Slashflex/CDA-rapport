@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../css/pdf.css">
+
+</head>
+
+<body>
+    <div class="headFac">
+        <div class="logoAndInfo"><img src="../../images/logo.png" class="logoIole" />
+            <br /><br />
+            Bâtiment Piren<br />
+            12, rue Henri Becquerel<br />
+            56000
+            Vannes<br />
+            +33 6 23 24 55 66<br />
+        </div>
+        <div class="firstLine"></div>
+
+        <div class="facDetail">
+            <div class="headFacTitle bold"> Détails  : </div>
+            N° de  : FAC2020-01-025<br />
+            Date d'émission : 06/01/20<br />
+            Date d'échéance : 06/01/20<br />
+            Référence client : GLA97432
+        </div>
+        <div class="secondLine"></div>
+
+        <div class="ioleDetail">
+            <div class="headFacTitle bold"> Contact interlocuteur 1 : </div>
+            Jean Vassal<br />
+            Tél : +33 6 24 65 89 01<br />
+            Mail : jvassal@iole.fr
+            <div class="headFacTitle mt-2 bold"> Contact interlocuteur 2 : </div>
+            Valentine Pontel<br />
+            Tél : +33 6 24 65 89 01<br />
+            Mail : v.pontel@iole.fr
+        </div>
+
+        <div class="thirdLine"></div>
+        <div class="barCodeHeader">
+            <img src="../../{-barCode-}" class="barCode" style="width:150px; height:150px" />
+        </div>
+    </div>
+
+    <div class="clientContact">
+        {-clientNom} {-clientPrenom-} <br />
+        {-clientAdresse1-} <br />
+        {-clientAdresse2-}<br />{-clientCodePostal-} {-clientVille-}
+    </div>
+
+    <div class="title">
+        Facture
+    </div>
+</body>
+
+</html>

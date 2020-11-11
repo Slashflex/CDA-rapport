@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="js/pdf.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/pdf.css" />
+  <title>Facture</title>
+</head>
+
+<body onload="getPdfInfo()">
+  <header>
+    <div class="headFac">
+      <div class="w-22-5">
+        <div class="flex">
+          <img src="images/logo.png" class="logoIole" />
+          <br />
+          <br />
+        </div>
+        <div class="flex">
+          {{adresse.adresse1}}<br />
+          {{adresse.adresse2}}<br />
+          {{adresse.codePostal}} {{adresse.ville}}<br />
+          Tél : {{adresse.tel}}<br />
+        </div>
+      </div>
+
+      <div class="firstLine"></div>
+
+      <div class="facDetail w-22-5">
+        <div class="headFacTitle bold center">Détails facture :</div>
+        <div class="infoFacture flex">
+          N° de facture : {{facture.num}}<br />
+          Date d'émission : {{facture.dateEmission}}<br />
+          Date d'échéance : {{facture.dateEcheance}}<br />
+          Référence client : {{facture.referenceClient}}
+        </div>
+      </div>
+
+      <div class="secondLine"></div>
+
+      <div class="ioleDetail w-22-5">
+        <div class="headFacTitle bold flex">Contact interlocuteur 1 :</div>
+        <div class="flex">
+          {{contact1.nom}}<br />
+          Tél : {{contact1.tel}}<br />
+          Mail : {{contact1.mail}}
+        </div>
+        <div class="headFacTitle mt-2 bold flex">Contact interlocuteur 2 :</div>
+        <div class="flex">
+          {{contact2.nom}}<br />
+          Tél : {{contact2.tel}}<br />
+          Mail : {{contact2.mail}}
+        </div>
+      </div>
+
+      <div class="thirdLine"></div>
+
+      <div class="barCodeHeader">
+        <img src="{{qrCode}}" class="barCode" style="width: 150px; height: 150px;" />
+      </div>
+    </div>
+
+    <div class="clientContact">
+      {{client.Nom}} {{client.Prénom}} <br />
+      {{client.Adresse1}} <br />
+      {{client.Adresse2}}<br />{{client.CodePostal}} {{client.Ville}}
+    </div>
+
+    <div class="title">
+      Facture
+    </div>
+  </header>
+
+  {% for facture in invoice.BonDeCommande %}
+  <span id="head_current8"></span>
+  <table class="tableau">
+    <span class="bonDeCommande bold">Bon de commande : {{facture}}</span>
+    <thead>
+      <tr>
+        {% for column in invoice.ColumnName %}
+        <th>{{column}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for key, val in invoice.Value %}
+      <tr>
+        <td class="center {% if key % 2 == 0 %}grey {% endif %}">{{val.0}}</td>
+        <td class="center description {% if key % 2 == 0 %}grey {% endif %}">{{val.1}}</td>
+        <td class="center {% if key % 2 == 0 %}grey {% endif %}">{{val.2}}</td>
+        <td class="center {% if key % 2 == 0 %}grey {% endif %}">{{val.3}}€</td>
+        <td class="center {% if key % 2 == 0 %}grey {% endif %}">{{val.4}}</td>
+        <td class="center {% if key % 2 == 0 %}grey {% endif %}">{{val.5}}%</td>
+        {% set montant = val.3 * val.2 %} {% set discounted = montant * val.5 / 100 %}
+        {% set result = montant - discounted %}
+        <td class="center {% if key % 2 == 0 %}grey {% endif %}">{{montant}}€</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% set addition = invoice.Value[0][5] %}
+  {% set discounted1 = invoice.Value[0][3] * invoice.Value[0][2] * invoice.Value[0][5] / 100 %}
+  {% set discounted2 = invoice.Value[1][3] * invoice.Value[1][2] * invoice.Value[1][5] / 100 %} {% set discounted3 = invoice.Value[2][3] * invoice.Value[2][2] *
+    invoice.Value[2][5] / 100 %} {% set final = discounted1 + discounted2 + discounted3 %}
+  <div class="priceUnderTab">
+    <span class="bold sousTotal">Sous-total</span>
+    <span id="sousTotaux">{{final}} € </span>
+  </div>
+  {% endfor %}
+
+  <div class="flex mb-50">
+    <!-- Informations RIB -->
+    <div id="rib" class="rib">
+      <p>
+        <span class="bold">Conditions et modalités de règlement : </span>
+      </p>
+      <p>
+        <span class="bold">Règlement par virement :</span><br />
+        IBAN FR76 4590 4857 0301 9867 045 (Ajouter Libellé : FAC2020-IOLE)
+      </p>
+      <p>
+        <span class="bold">Règlement par chèque à l’odre de :</span><br />
+        Iole Solutions
+      </p>
+
+      <p>Paiement sous 30 jours à réception de la facture. Pas d’escompte pour paiement anticipé. En cas de retard
+        de paiement, application d’une indemnité forfaitaire pour frais de recouvrement de 40€, selon l’article
+        D.441-5 du code du commerce.</p>
+    </div>
+
+    <!-- Tableau Totaux -->
+    <div class="totaux">
+      {{total|raw}}
+    </div>
+  </div>
+  </div>
+
+  <footer>
+    <div id="statuts">
+      {{footer.nom}} - {{footer.forme}} - Capital social : {{footer.capital}} - Siège social : {{footer.siege}}
+      -<br />
+      RCS : {{footer.rcs}} - SIRET : {{footer.siret}} - Numéro de TVA intracommunautaire : {{footer.tvaIntra}} - Code
+      APE : {{footer.ape}}
+      <br />
+      <br />
+      <div id="page_numbers">
+        Page
+        <span id="page_current"></span>
+        <span>/</span>
+        <span id="page_count"></span>
+      </div>
+    </div>
+</body>
+</html>

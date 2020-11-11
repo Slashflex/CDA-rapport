@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../css/pdf.css">
+
+</head>
+
+<body>
+    <div class="headFac">
+        <div class="logoAndInfo"><img src="../../images/logo.png" class="logoIole" />
+            <br /><br />
+            {-adresse1-}<br />
+            {-adresse2-}<br />
+            {-codePostal-}
+            {-ville-}<br />
+            {-tel-}<br />
+        </div>
+        <div class="firstLine"></div>
+
+        <div class="facDetail">
+            <div class="headFacTitle bold"> Détails facture : </div>
+            N° de facture : {-num-}<br />
+            Date d'émission : {-dateEmission-}<br />
+            Date d'échéance : {-dateEcheance-}<br />
+            Référence client : {-referenceClient-}
+        </div>
+        <div class="secondLine"></div>
+
+        <div class="ioleDetail">
+            <div class="headFacTitle bold"> Contact interlocuteur 1 : </div>
+            {-nom1-}<br />
+            Tél : {-tel1-}<br />
+            Mail : {-mail1-}
+            <div class="headFacTitle mt-2 bold"> Contact interlocuteur 2 : </div>
+            {-nom2-}<br />
+            Tél : {-tel2-}<br />
+            Mail : {-mail2-}
+        </div>
+
+        <div class="thirdLine"></div>
+        <div class="barCodeHeader">
+            <img src="../../{-barCode-}" class="barCode" style="width:150px; height:150px" />
+        </div>
+    </div>
+
+    <div class="clientContact">
+        {-clientNom} {-clientPrenom-} <br />
+        {-clientAdresse1-} <br />
+        {-clientAdresse2-}<br />{-clientCodePostal-} {-clientVille-}
+    </div>
+
+    <div class="title">
+        Facture
+    </div>
+</body>
+
+</html>
